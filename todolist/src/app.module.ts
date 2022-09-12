@@ -10,7 +10,7 @@ import { PostagemModule } from './postagem/modules/postagem.modules';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: '8846277390.lS',
+      password: '',
       database: 'db_projetoDoeSaude',
       entities: [Postagem],
       synchronize: true
