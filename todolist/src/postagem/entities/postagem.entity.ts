@@ -10,6 +10,11 @@ export class Postagem{
     @IsNotEmpty()
     @MaxLength(255)
     @Column({nullable: false, length: 255})
+    titulo: string
+
+    @IsNotEmpty()
+    @MaxLength(255)
+    @Column({nullable: false, length: 255})
     imagem: string
 
     @IsNotEmpty()
