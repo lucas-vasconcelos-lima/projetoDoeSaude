@@ -14,13 +14,19 @@ export class PostagemService{
     ){}
     // Buscar todos itens dentro de postagem
     async findAll(): Promise <Postagem[]>  {
-        return this.postagemRepository.find()
+        return this.postagemRepository.find({
+            relations: {
+                categoria: true
+            }
+        })
     }
     // Buscar item de acordo com o id que o usuario passar
     async findById(id: number): Promise<Postagem> {
         let postagem = await this.postagemRepository.findOne ({
             where: {
                 id
+            },relations: {
+                categoria: true
             }
         })
         if(!postagem)
@@ -34,6 +40,8 @@ export class PostagemService{
         return this.postagemRepository.find({
             where: {
                 titulo: ILike (`%${titulo}%`)
+            },relations: {
+                categoria: true
             }
         })
     }
