@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AppController } from './app.controller';
 import { Categoria } from './categoria/entities/categoria.entity';
 import { CategoriaModule } from './categoria/modules/categoria.module';
 import { Postagem } from './postagem/entities/postagem.entity'; 
@@ -8,6 +9,7 @@ import { PostagemService } from './postagem/service/postagem.service';
 
 @Module({
   imports: [
+   /*
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -18,10 +20,28 @@ import { PostagemService } from './postagem/service/postagem.service';
       entities: [Postagem, Categoria],
       synchronize: true
     }),
+*/
+    
+
+    TypeOrmModule.forRoot({
+
+      type: 'postgres',
+      url: process.env.DATABASE_URL,  
+      logging: false,
+      dropSchema: false,
+      ssl: {
+        rejectUnauthorized: false
+      },
+      autoLoadEntities: true,
+      synchronize: true
+
+    }),
+
+
     PostagemModule,
     CategoriaModule
   ],
-  controllers: [],
+  controllers: [AppController],
   providers: [],
 })
 export class AppModule {}
