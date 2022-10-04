@@ -9,35 +9,30 @@ import { PostagemService } from './postagem/service/postagem.service';
 
 @Module({
   imports: [
-   /*
+   
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'gen134679',
+      password: 'MMJ210491',
       database: 'db_projetodoesaude',
       entities: [Postagem, Categoria],
       synchronize: true
     }),
-*/
-    
+    // TypeOrmModule.forRoot({
 
-    TypeOrmModule.forRoot({
+    //   type: 'postgres',
+    //   url: process.env.DATABASE_URL,  
+    //   logging: false,
+    //   dropSchema: false,
+    //   ssl: {
+    //     rejectUnauthorized: false
+    //   },
+    //   autoLoadEntities: true,
+    //   synchronize: true
 
-      type: 'postgres',
-      url: process.env.DATABASE_URL,  
-      logging: false,
-      dropSchema: false,
-      ssl: {
-        rejectUnauthorized: false
-      },
-      autoLoadEntities: true,
-      synchronize: true
-
-    }),
-
-
+    // }),
     PostagemModule,
     CategoriaModule
   ],
