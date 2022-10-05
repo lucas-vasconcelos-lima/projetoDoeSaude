@@ -50,9 +50,5 @@ export class PostagemController {
     delete(@Param('id', ParseIntPipe) id: number){
         return this.service.delete(id)
     }
-
-
-
-
 }
 
