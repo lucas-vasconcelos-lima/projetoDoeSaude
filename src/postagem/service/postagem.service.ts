@@ -61,7 +61,7 @@ export class PostagemService{
     async update(postagem: Postagem): Promise<Postagem>{
         let postagemUpdate = await this.findById(postagem.id)
 
-        if(!postagemUpdate || !postagem.id)
+        if(!postagemUpdate || postagem.id!)
         throw new HttpException('Postagem não encontrada', HttpStatus.NOT_FOUND)
 
         return this.postagemRepository.save(postagem)
