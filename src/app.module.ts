@@ -3,26 +3,28 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { Categoria } from './categoria/entities/categoria.entity';
 import { CategoriaModule } from './categoria/modules/categoria.module';
+import { Endereco } from './endereco/entities/endereco.entity';
+import { EnderecoModule } from './endereco/modules/endereco.module';
 import { Postagem } from './postagem/entities/postagem.entity'; 
 import { PostagemModule } from './postagem/modules/postagem.modules';
 import { PostagemService } from './postagem/service/postagem.service';
 
+
 @Module({
   imports: [
-   /*
-    TypeOrmModule.forRoot({
+   
+    /*TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'gen134679',
+      password: '55199718',
       database: 'db_projetodoesaude',
-      entities: [Postagem, Categoria],
+      entities: [Postagem, Categoria, Endereco],
       synchronize: true
     }),
 */
-    
-
+  
     TypeOrmModule.forRoot({
 
       type: 'postgres',
@@ -39,7 +41,8 @@ import { PostagemService } from './postagem/service/postagem.service';
 
 
     PostagemModule,
-    CategoriaModule
+    CategoriaModule,
+    EnderecoModule
   ],
   controllers: [AppController],
   providers: [],
