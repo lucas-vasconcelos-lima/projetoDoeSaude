@@ -37,7 +37,7 @@ export class EnderecoService{
     }
     
 
-    async findByTipo(cep: string): Promise <Endereco[]>{
+    async findByCep(cep: string): Promise <Endereco[]>{
         return this.enderecoRepository.find({
             where: {
                 cep: ILike (`%${cep}%`)
@@ -56,7 +56,7 @@ export class EnderecoService{
         let enderecoUpdate = await this.findById(endereco.id)
 
         if(!enderecoUpdate || !endereco.id)
-            throw new HttpException('Endereco não encontrada', HttpStatus.NOT_FOUND)
+            throw new HttpException('Endereco não encontrado', HttpStatus.NOT_FOUND)
         return this.enderecoRepository.save(endereco)
     }
 
@@ -64,7 +64,7 @@ export class EnderecoService{
         let enderecoDelete = await this.findById(id)
 
         if(!enderecoDelete)
-        throw new HttpException('Endereco não encontrada', HttpStatus.NOT_FOUND)
+        throw new HttpException('Endereco não encontrado', HttpStatus.NOT_FOUND)
 
         return this.enderecoRepository.delete(id)
     }

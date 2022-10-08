@@ -21,10 +21,10 @@ export class EnderecoController{
         return this.service.findById(id)
     }
 
-    @Get('/tipo/:tipo')
+    @Get('/cep/:cep')
     @HttpCode(HttpStatus.OK)
-    findByTipo(@Param('tipo') tipo: string): Promise <Endereco[]>{
-        return this.service.findByTipo(tipo)
+    findByTipo(@Param('tipo') cep: string): Promise <Endereco[]>{
+        return this.service.findByCep(cep)
     }
 
     @Post()
