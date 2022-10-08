@@ -14,7 +14,7 @@ export class UsuarioService {
     async findAll(): Promise<Usuario[]> {
         return this.usuarioRepository.find({
             relations: {
-                postagem: true,
+                postagens: true,
                 endereco: true
             }
         })
@@ -25,7 +25,7 @@ export class UsuarioService {
             where: {
                 id
             }, relations: {
-                postagem: true,
+                postagens: true,
                 endereco: true
             }
         })
@@ -41,7 +41,7 @@ export class UsuarioService {
             where: {
                 nome: ILike(`%${nome}%`)
             },relations: {
-                postagem: true,
+                postagens: true,
                 endereco: true
             }
         })
@@ -52,7 +52,7 @@ export class UsuarioService {
             where: {
                 cpf: ILike(`%${cpf}%`)
             },relations: {
-                postagem: true,
+                postagens: true,
                 endereco: true
             }
         })

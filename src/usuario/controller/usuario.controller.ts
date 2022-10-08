@@ -3,8 +3,8 @@ import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPip
 import { ApiTags } from "@nestjs/swagger"
 import { UsuarioService } from '../service/usuario.service';
 
-@ApiTags('Endereco')
-@Controller('/endereco')
+@ApiTags('Usuario')
+@Controller('/usuario')
 export class UsuarioController{
 
     constructor(private readonly service: UsuarioService){}
