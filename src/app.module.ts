@@ -1,15 +1,18 @@
+import { UsuarioModule } from './usuario/modules/usuario.module';
+import { Usuario } from './usuario/entities/usuario.entity';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { Categoria } from './categoria/entities/categoria.entity';
 import { CategoriaModule } from './categoria/modules/categoria.module';
+import { Endereco } from './endereco/entities/endereco.entity';
+import { EnderecoModule } from './endereco/modules/endereco.module';
 import { Postagem } from './postagem/entities/postagem.entity'; 
-import { PostagemModule } from './postagem/modules/postagem.modules';
-import { PostagemService } from './postagem/service/postagem.service';
+import { PostagemModule } from './postagem/modules/postagem.module';
 
 @Module({
   imports: [
-   /*
+    
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -17,14 +20,12 @@ import { PostagemService } from './postagem/service/postagem.service';
       username: 'root',
       password: 'gen134679',
       database: 'db_projetodoesaude',
-      entities: [Postagem, Categoria],
+      entities: [Postagem, Categoria, Endereco, Usuario],
       synchronize: true
     }),
-*/
     
-
+   /*
     TypeOrmModule.forRoot({
-
       type: 'postgres',
       url: process.env.DATABASE_URL,  
       logging: false,
@@ -34,12 +35,12 @@ import { PostagemService } from './postagem/service/postagem.service';
       },
       autoLoadEntities: true,
       synchronize: true
-
-    }),
-
-
+    }), 
+    */
     PostagemModule,
-    CategoriaModule
+    CategoriaModule,
+    EnderecoModule, 
+    UsuarioModule
   ],
   controllers: [AppController],
   providers: [],
