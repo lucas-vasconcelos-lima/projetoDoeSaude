@@ -19,8 +19,6 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config)
   SwaggerModule.setup('/swagger', app, document)
 
-
-
   process.env.TZ = '-03:00'
   app.useGlobalPipes(new ValidationPipe())
   app.enableCors()

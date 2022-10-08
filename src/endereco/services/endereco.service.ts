@@ -14,7 +14,11 @@ export class EnderecoService{
 
     async findAll(): Promise <Endereco[]>{
 
-        return this.enderecoRepository.find()
+        return this.enderecoRepository.find({
+            relations: {                          
+                usuario: true
+            }
+        })
         
     }
 
@@ -23,11 +27,9 @@ export class EnderecoService{
         let endereco = await this.enderecoRepository.findOne({
             where: {
                 id
+            },relations: {
+                usuario: true
             }
-                // },
-            // relations: {
-            //     postagem: true
-            // }
         })
         // NESSA PARTE DEBAIXO
         if(!endereco)
@@ -41,10 +43,9 @@ export class EnderecoService{
         return this.enderecoRepository.find({
             where: {
                 cep: ILike (`%${cep}%`)
-            }    
-            // }, relations: {
-            //     postagem: true
-            // }
+            }  ,relations: {
+                usuario: true
+            }
         })
     }
 

@@ -12,18 +12,19 @@ import { PostagemModule } from './postagem/modules/postagem.module';
 
 @Module({
   imports: [
-    /*
+    
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'MMJ210491',
+      password: 'gen134679',
       database: 'db_projetodoesaude',
       entities: [Postagem, Categoria, Endereco, Usuario],
       synchronize: true
     }),
-    */
+    
+   /*
     TypeOrmModule.forRoot({
       type: 'postgres',
       url: process.env.DATABASE_URL,  
@@ -35,6 +36,7 @@ import { PostagemModule } from './postagem/modules/postagem.module';
       autoLoadEntities: true,
       synchronize: true
     }), 
+    */
     PostagemModule,
     CategoriaModule,
     EnderecoModule, 

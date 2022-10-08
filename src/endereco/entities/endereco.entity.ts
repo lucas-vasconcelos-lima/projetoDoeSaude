@@ -1,5 +1,7 @@
+import { ApiProperty } from "@nestjs/swagger";
 import { IsNotEmpty, MaxLength } from "class-validator";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Usuario } from "../../usuario/entities/usuario.entity";
 
 @Entity({name: 'tb_endereco'}) 
 export class Endereco{
@@ -29,6 +31,13 @@ export class Endereco{
     @IsNotEmpty()
     @Column({ nullable: false, length:5})
     numero: string    
+
+    @OneToMany(() => Usuario, (usuario) => usuario.endereco, {
+        onDelete: 'CASCADE'
+    })
+
+    @ApiProperty({ type: () => Usuario})
+    usuario: Usuario[]
 }
 
 

@@ -4,83 +4,81 @@ import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 
 @Injectable()
-export class UsuarioService{
+export class UsuarioService {
     constructor(
         @InjectRepository(Usuario)
         private usuarioRepository: Repository<Usuario>
-    ){}
+    ) { }
 
     //MÉTODOS
-    async findAll(): Promise<Usuario[]>{
+    async findAll(): Promise<Usuario[]> {
         return this.usuarioRepository.find({
-            // relations: {
-            //     categoria: true
-            // }
+            relations: {
+                postagem: true,
+                endereco: true
+            }
         })
     }
 
-    async findById(id: number): Promise<Usuario>{
+    async findById(id: number): Promise<Usuario> {
         let categoria = await this.usuarioRepository.findOne({
-            where:{
+            where: {
                 id
+            }, relations: {
+                postagem: true,
+                endereco: true
             }
-            // }, 
-            // relations: {
-            //     tarefas: true
-            // }
         })
 
-        if(!categoria)
+        if (!categoria)
             throw new HttpException(`USUÁRIO NÃO ENCONTRADO`, HttpStatus.NOT_FOUND)
         return categoria
     }
 
 
-    async findByNome(nome: string): Promise<Usuario[]>{
+    async findByNome(nome: string): Promise<Usuario[]> {
         return this.usuarioRepository.find({
             where: {
                 nome: ILike(`%${nome}%`)
+            },relations: {
+                postagem: true,
+                endereco: true
             }
-            // }, 
-            // relations: {
-            //     tarefas: true
-            // }
         })
     }
-    
-    async findByCpf(cpf: string): Promise<Usuario[]>{
+
+    async findByCpf(cpf: string): Promise<Usuario[]> {
         return this.usuarioRepository.find({
             where: {
                 cpf: ILike(`%${cpf}%`)
+            },relations: {
+                postagem: true,
+                endereco: true
             }
-            // }, 
-            // relations: {
-            //     tarefas: true
-            // }
         })
     }
-        
-    async create(usuario: Usuario) : Promise<Usuario>{
+
+    async create(usuario: Usuario): Promise<Usuario> {
         return this.usuarioRepository.save(usuario)
     }
 
-    async update(usuario: Usuario) : Promise<Usuario>{
+    async update(usuario: Usuario): Promise<Usuario> {
 
         let usuarioUpdate = await this.findById(usuario.id)
 
-        if(!usuarioUpdate || !usuario.id)
+        if (!usuarioUpdate || !usuario.id)
             throw new HttpException('USUÁRIO NÃO ENCONTRADO', HttpStatus.NOT_FOUND)
         return this.usuarioRepository.save(usuario)
     }
 
-    
-    async delete(id: number): Promise<DeleteResult>{
+
+    async delete(id: number): Promise<DeleteResult> {
         let usuarioDelete = await this.findById(id)
-        
-        if(!usuarioDelete)
+
+        if (!usuarioDelete)
             throw new HttpException('USUÁRIO NÃO FOI ENCONTRADO', HttpStatus.NOT_FOUND)
         return this.usuarioRepository.delete(id)
     }
 
-    
+
 }
