@@ -20,6 +20,4 @@ export class Categoria {
 
     @ApiProperty({type: () => Postagem})    
     postagem: Postagem[]
-
-    
 }
