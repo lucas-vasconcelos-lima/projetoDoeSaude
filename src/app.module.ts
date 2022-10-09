@@ -17,9 +17,9 @@ import { PostagemModule } from './postagem/modules/postagem.module';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'gen134679',
+      password: 'MMJ210491',
       database: 'db_projetodoesaude',
-      entities: [Postagem, Categoria, Endereco, Usuario],
+      entities: [Postagem, Usuario, Categoria, Endereco],
       synchronize: true,
       autoLoadEntities: true
     }),

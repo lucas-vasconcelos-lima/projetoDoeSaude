@@ -24,7 +24,8 @@ export class UsuarioService {
         let categoria = await this.usuarioRepository.findOne({
             where: {
                 id
-            }, relations: {
+            },
+            relations: {
                 postagens: true,
                 endereco: true
             }
@@ -40,7 +41,8 @@ export class UsuarioService {
         return this.usuarioRepository.find({
             where: {
                 nome: ILike(`%${nome}%`)
-            },relations: {
+            },
+            relations: {
                 postagens: true,
                 endereco: true
             }
@@ -51,7 +53,8 @@ export class UsuarioService {
         return this.usuarioRepository.find({
             where: {
                 cpf: ILike(`%${cpf}%`)
-            },relations: {
+            },
+            relations: {
                 postagens: true,
                 endereco: true
             }

@@ -4,7 +4,7 @@ import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn } from 
 import { Endereco } from "../../endereco/entities/endereco.entity";
 import { Postagem } from "../../postagem/entities/postagem.entity";
 
-@Entity({ name: 'tb_usuario' })
+@Entity({name:'tb_usuario'})
 export class Usuario {
     @PrimaryColumn()
     id: number
@@ -29,20 +29,21 @@ export class Usuario {
     senha: string
 
     @IsNotEmpty()
-    @Column({ nullable: false })
+    @Column({ nullable: false, type: "date"})
     dt_nasc: Date
-
-
-    @ApiProperty({type: () => Postagem})
-    @OneToMany(type => Postagem, postagem => postagem.usuario)
-    postagens: Postagem[]
-
     
+    @ApiProperty({type: () => Postagem})
+    @OneToMany(() => Postagem, (postagem: Postagem) => postagem.usuario)
+    postagens: Postagem[]; 
+
+
     @ApiProperty({ type: () => Endereco })
     @ManyToOne(type => Endereco, endereco => endereco.usuario, {
         onDelete: 'CASCADE'
     })
     endereco: Endereco
+
+    
 }
 
 

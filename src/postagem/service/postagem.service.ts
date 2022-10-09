@@ -28,14 +28,12 @@ export class PostagemService{
             where: {
                 id
             },relations: {
-                categoria: true,              
-                usuario: true
+                usuario: true, 
+                categoria: true
             } 
         })
         if(!postagem)
-
-        throw new HttpException('Postagem não encontrada', HttpStatus.NOT_FOUND)
-
+            throw new HttpException('Postagem não encontrada', HttpStatus.NOT_FOUND)
         return postagem
     }
     // Busca todos itens dentro da pasta de postagem/titulo -> "Titulo a ser encontrado"
@@ -44,8 +42,8 @@ export class PostagemService{
             where: {
                 titulo: ILike (`%${titulo}%`)
             },relations: {
-                categoria: true,              
-                usuario: true
+                usuario: true, 
+                categoria: true              
             }
         })
     }
@@ -55,8 +53,8 @@ export class PostagemService{
             where: {
                 descricao: ILike (`%${descricao}%`)
             },relations: {
-                categoria: true,
-                usuario: true
+                usuario: true, 
+                categoria: true
             }
         })
     }
@@ -78,7 +76,7 @@ export class PostagemService{
         let postagemDelete = await this.findById(id)
 
         if(!postagemDelete)
-        throw new HttpException('Postagem não encontrada', HttpStatus.NOT_FOUND)
+            throw new HttpException('Postagem não encontrada', HttpStatus.NOT_FOUND)
 
         return this.postagemRepository.delete(id)
     }
