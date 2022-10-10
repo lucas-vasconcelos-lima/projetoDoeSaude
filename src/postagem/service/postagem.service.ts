@@ -1,6 +1,7 @@
 import { HttpException, HttpStatus, Inject, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { DeleteResult, ILike, Repository } from "typeorm";
+import { Usuario } from "../../usuario/entities/usuario.entity";
 import { Postagem } from "../entities/postagem.entity";
 
 @Injectable()
@@ -16,7 +17,8 @@ export class PostagemService{
     async findAll(): Promise <Postagem[]>  {
         return this.postagemRepository.find({
             relations: {
-                categoria: true
+                categoria: true,              
+                usuario: true
             }
         })
     }
@@ -26,13 +28,12 @@ export class PostagemService{
             where: {
                 id
             },relations: {
+                usuario: true, 
                 categoria: true
-            }
+            } 
         })
         if(!postagem)
-
-        throw new HttpException('Postagem não encontrada', HttpStatus.NOT_FOUND)
-
+            throw new HttpException('Postagem não encontrada', HttpStatus.NOT_FOUND)
         return postagem
     }
     // Busca todos itens dentro da pasta de postagem/titulo -> "Titulo a ser encontrado"
@@ -41,7 +42,8 @@ export class PostagemService{
             where: {
                 titulo: ILike (`%${titulo}%`)
             },relations: {
-                categoria: true
+                usuario: true, 
+                categoria: true              
             }
         })
     }
@@ -50,6 +52,9 @@ export class PostagemService{
         return this.postagemRepository.find({
             where: {
                 descricao: ILike (`%${descricao}%`)
+            },relations: {
+                usuario: true, 
+                categoria: true
             }
         })
     }
@@ -61,7 +66,7 @@ export class PostagemService{
     async update(postagem: Postagem): Promise<Postagem>{
         let postagemUpdate = await this.findById(postagem.id)
 
-        if(!postagemUpdate || !postagem.id)
+        if(!postagemUpdate || postagem.id!)
         throw new HttpException('Postagem não encontrada', HttpStatus.NOT_FOUND)
 
         return this.postagemRepository.save(postagem)
@@ -71,8 +76,7 @@ export class PostagemService{
         let postagemDelete = await this.findById(id)
 
         if(!postagemDelete)
-        throw new HttpException('Postagem não encontrada', HttpStatus.NOT_FOUND)
-
+            throw new HttpException('Postagem não encontrada', HttpStatus.NOT_FOUND)
         return this.postagemRepository.delete(id)
     }
  
