@@ -77,7 +77,6 @@ export class PostagemService{
 
         if(!postagemDelete)
             throw new HttpException('Postagem não encontrada', HttpStatus.NOT_FOUND)
-
         return this.postagemRepository.delete(id)
     }
  
