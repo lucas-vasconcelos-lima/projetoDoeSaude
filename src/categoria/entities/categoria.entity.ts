@@ -17,7 +17,6 @@ export class Categoria {
     tipo: string
 
     @OneToMany(() => Postagem, (postagem) => postagem.categoria)
-
     @ApiProperty({type: () => Postagem})    
     postagem: Postagem[]
 }

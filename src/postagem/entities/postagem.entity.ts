@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsNotEmpty, MaxLength } from "class-validator";
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Categoria } from "../../categoria/entities/categoria.entity";
 import { Usuario } from "../../usuario/entities/usuario.entity";
 
@@ -29,15 +29,16 @@ export class Postagem {
     descricao: string
 
     @ApiProperty({ type: () => Categoria })
+    @JoinColumn({name: 'categoria_id'})
     @ManyToOne(() => Categoria, (categoria) => categoria.postagem, {
         onDelete: 'CASCADE'
     })
     categoria: Categoria
 
-     @ApiProperty({ type: () => Usuario })
-    @ManyToOne(type => Usuario, usuario => usuario.postagens, {
-        //AO EXCLUIR UM USUARIO TODAS POSTAGENS DEVEM SER EXCLUIDAS 
-        onDelete: "CASCADE"
-    })
+    @ApiProperty({ type: () => Usuario })
+    @JoinColumn({name: 'user_id'})
+    @ManyToOne(() => Usuario, (usuario: Usuario) => usuario.postagens,{onDelete: 'CASCADE'})
     usuario: Usuario
+
+    
 }

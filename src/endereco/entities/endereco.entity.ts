@@ -31,13 +31,14 @@ export class Endereco{
     @IsNotEmpty()
     @Column({ nullable: false, length:5})
     numero: string    
+    usuario: any;
 
-    @OneToMany(() => Usuario, (usuario) => usuario.endereco, {
-        onDelete: 'CASCADE'
-    })
+    // @OneToMany(() => Usuario, (usuario) => usuario.endereco, {
+    //     onDelete: 'CASCADE'
+    // })
 
-    @ApiProperty({ type: () => Usuario})
-    usuario: Usuario[]
+    // @ApiProperty({ type: () => Usuario})
+    // usuario: Usuario[]
 }
 
 
