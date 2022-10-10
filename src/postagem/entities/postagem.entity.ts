@@ -39,6 +39,5 @@ export class Postagem {
     @JoinColumn({name: 'user_id'})
     @ManyToOne(() => Usuario, (usuario: Usuario) => usuario.postagens,{onDelete: 'CASCADE'})
     usuario: Usuario
-
     
 }

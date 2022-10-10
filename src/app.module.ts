@@ -12,6 +12,7 @@ import { PostagemModule } from './postagem/modules/postagem.module';
 
 @Module({
   imports: [
+   /*
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -23,8 +24,8 @@ import { PostagemModule } from './postagem/modules/postagem.module';
       synchronize: true,
       autoLoadEntities: true
     }),
-    
-   /*
+    */
+   
     TypeOrmModule.forRoot({
       type: 'postgres',
       url: process.env.DATABASE_URL,  
@@ -36,7 +37,7 @@ import { PostagemModule } from './postagem/modules/postagem.module';
       autoLoadEntities: true,
       synchronize: true
     }), 
-    */
+    
     PostagemModule,
     CategoriaModule,
     EnderecoModule, 
