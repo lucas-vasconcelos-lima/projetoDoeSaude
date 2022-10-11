@@ -10,6 +10,11 @@ export class Usuario {
     id: number
 
     @IsNotEmpty()
+    @MaxLength(100)
+    @Column({ nullable: false, length: 100 })
+    email: string
+
+    @IsNotEmpty()
     @MaxLength(150)
     @Column({ nullable: false, length: 150 })
     nome: string
